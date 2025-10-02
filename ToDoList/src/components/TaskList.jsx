@@ -1,32 +1,23 @@
-import { useMemo, useCallback, useState } from 'react';
+import { useMemo, useContext } from 'react';
 import { TaskItem } from './index';
+import { TasksContext } from '../App'
 
-const TaskList = ({tasks}) => {
+const TaskList = () => {
+    const { tasks } = useContext(TasksContext)
     const orderedTasks = useMemo(() => {
-        console.log("no ordeno :(")
-        return [...tasks].sort((a, b) => a.priority - b.priority);
+        return [...tasks].sort((a, b) => a.priorityNum - b.priorityNum);
     }, [tasks]);
-
-    const handleComplete = useCallback((key) => {
-
-    }, []);
-
-    const handleDelete = useCallback((index) => {
-        tasks = orderedTasks.splice(index, 1);
-        console.log(tasks)
-    }, []);
 
     return (
         <ul>
-            {orderedTasks.map((task, index) => (
-                <TaskItem key={index} 
-                taskContent={task.name} 
-                onComplete={handleComplete} 
-                onDelete={() => handleDelete(index)} 
-                priority={task.priority}/>
-            ))}
+        {orderedTasks.map((task) => (
+            <TaskItem
+            key={task.id} 
+            task={task}
+            />
+        ))}
         </ul>
     )
 }
 
-export { TaskList }
+export { TaskList };

@@ -1,4 +1,4 @@
-import {useRef} from 'react';
+import {useRef, useEffect} from 'react';
 
 const TaskForm = ({onAddTask}) => {
     const inputNameRef = useRef(null); 
@@ -7,44 +7,38 @@ const TaskForm = ({onAddTask}) => {
 
     const handleSubmit = () => {
         const inputText = inputNameRef.current.value.trim();
-        const priorityNum = selectRef.current.value;
+        const priorityNum = parseInt(selectRef.current.value);
         const inputDescription = inputDescriptionRef.current.value;
         if (!inputText) return;
-        let priority = "";
-        switch (priorityNum) {
-            case "1": 
-                priority = "Prioridad Alta";
-                break;
-            case "2": 
-                priority = "Prioridad Media";
-                break;
-            case "3": 
-                priority = "Prioridad Baja";
-                break;
-        }
 
         const newTask = {
+            id: Date.now(),
             name: inputText,
             description: inputDescription,
-            priority: priority,
+            priorityNum: priorityNum,
             completed: false
         }
         onAddTask(newTask);
         inputNameRef.current.value = "";
-        inputNameRef.current.focus();
+        inputDescriptionRef.current.value = "";
     }
 
+
+    useEffect(() => {
+        inputNameRef.current.focus();
+    }, []);
+
     return (
-        <>
+        <div className="form-container">
             <input ref={inputNameRef} type="text" placeholder="Ingrese una tarea..." />
-            <input ref={inputDescriptionRef} type="text" placeholder="descripción"/>
-            <button onClick={handleSubmit}>Add</button>
+            <input ref={inputDescriptionRef} type="text" placeholder="Descripción..."/>
             <select ref={selectRef} name="prioridad"> 
                 <option value="1">Prioridad Alta</option>
                 <option value="2">Prioridad Media</option>
                 <option value="3">Prioridad Baja</option>
             </select>
-        </>
+            <button onClick={handleSubmit}>Add</button>
+        </div>
     )
 }
 
