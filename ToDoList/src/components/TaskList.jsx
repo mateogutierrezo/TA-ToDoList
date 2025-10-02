@@ -4,6 +4,7 @@ import { TasksContext } from '../App'
 
 const TaskList = () => {
     const { tasks } = useContext(TasksContext)
+
     const orderedTasks = useMemo(() => {
         return [...tasks].sort((a, b) => a.priorityNum - b.priorityNum);
     }, [tasks]);

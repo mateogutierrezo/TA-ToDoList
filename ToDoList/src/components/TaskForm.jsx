@@ -1,6 +1,6 @@
 import {useRef, useEffect} from 'react';
 
-const TaskForm = ({onAddTask}) => {
+const TaskForm = ({ onAddTask, onChecked }) => {
     const inputNameRef = useRef(null); 
     const inputDescriptionRef = useRef(null);
     const selectRef = useRef(null);
@@ -23,21 +23,26 @@ const TaskForm = ({onAddTask}) => {
         inputDescriptionRef.current.value = "";
     }
 
-
     useEffect(() => {
         inputNameRef.current.focus();
     }, []);
 
     return (
-        <div className="form-container">
-            <input ref={inputNameRef} type="text" placeholder="Ingrese una tarea..." />
-            <input ref={inputDescriptionRef} type="text" placeholder="Descripción..."/>
-            <select ref={selectRef} name="prioridad"> 
-                <option value="1">Prioridad Alta</option>
-                <option value="2">Prioridad Media</option>
-                <option value="3">Prioridad Baja</option>
-            </select>
-            <button onClick={handleSubmit}>Add</button>
+        <div className="header">
+            <div className="form-container">
+                <input ref={inputNameRef} type="text" placeholder="Ingrese una tarea..." />
+                <input ref={inputDescriptionRef} type="text" placeholder="Descripción..."/>
+                <select ref={selectRef} name="prioridad"> 
+                    <option value="1">Prioridad Alta</option>
+                    <option value="2">Prioridad Media</option>
+                    <option value="3">Prioridad Baja</option>
+                </select>
+                <button onClick={handleSubmit}>Add</button>
+            </div>
+            <div className="visualization">
+                <p>Visualización detallada</p>
+                <input type="checkbox" onChange={onChecked} className="visual-check"></input>
+            </div>
         </div>
     )
 }

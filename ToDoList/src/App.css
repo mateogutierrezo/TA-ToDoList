@@ -32,6 +32,7 @@ ul {
 }
 
 .task-info {
+    place-items: center;
     border: 2px solid white;
     border-radius: 12px;
     padding: 10px;
@@ -50,8 +51,25 @@ ul {
     justify-content: space-around;
 }
 
+.visualization {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 .completed .task-info {
     color: grey;
     border: 1px solid grey
 }
 
+.visual-check {
+    width: 30px;
+}
+
+.display-block {
+    display: block;
+}
+
+.display-none {
+    display: none;
+}
