@@ -9,15 +9,24 @@ const TaskList = () => {
         return [...tasks].sort((a, b) => a.priorityNum - b.priorityNum);
     }, [tasks]);
 
+    const pendingTasks = useMemo(() => {
+        console.log("hola")
+        return [...tasks].filter(task => task.completed === false).length
+        
+    }, [tasks])
+
     return (
-        <ul>
-        {orderedTasks.map((task) => (
-            <TaskItem
-            key={task.id} 
-            task={task}
-            />
-        ))}
-        </ul>
+        <>
+            <p>Tareas pendientes: {pendingTasks}</p>
+            <ul>
+            {orderedTasks.map((task) => (
+                <TaskItem
+                key={task.id} 
+                task={task}
+                />
+            ))}
+            </ul>
+        </>
     )
 }
 

@@ -1,9 +1,11 @@
-import {useRef, useEffect} from 'react';
+import {useRef, useEffect, useState} from 'react';
 
 const TaskForm = ({ onAddTask, onChecked }) => {
     const inputNameRef = useRef(null); 
     const inputDescriptionRef = useRef(null);
     const selectRef = useRef(null);
+
+    const [taskAdded, setTaskAdded] = useState(false);
 
     const handleSubmit = () => {
         const inputText = inputNameRef.current.value.trim();
@@ -21,11 +23,13 @@ const TaskForm = ({ onAddTask, onChecked }) => {
         onAddTask(newTask);
         inputNameRef.current.value = "";
         inputDescriptionRef.current.value = "";
+
+        setTaskAdded(prev => !prev);
     }
 
     useEffect(() => {
         inputNameRef.current.focus();
-    }, []);
+    }, [taskAdded]);
 
     return (
         <div className="header">
