@@ -11,7 +11,6 @@ const TaskList = () => {
 
     const pendingTasks = useMemo(() => {
         return [...tasks].filter(task => task.completed === false).length
-        
     }, [tasks])
 
     return (
