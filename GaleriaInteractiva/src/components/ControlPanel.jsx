@@ -1,4 +1,4 @@
-const ControlPanel = ({totalLikes, onSizeChange}) => {
+const ControlPanel = ({totalLikes, onSizeChange, onStart, onStop}) => {
     return (
         <div className="panel">
             <p>Liked photos: {totalLikes}</p>
@@ -8,7 +8,11 @@ const ControlPanel = ({totalLikes, onSizeChange}) => {
                 <button onClick={() => onSizeChange("medium")}>medium</button>
                 <button onClick={() => onSizeChange("large")}>large</button>
             </div>
-            <button className="play">Play animation</button>
+            <div className="animation-controllers">
+                <p>Animation</p>
+                <button className="play" onClick={() => onStart()}>Play</button>
+                <button className="play" onClick={() => onStop()}>Stop</button>
+            </div>
         </div>
     )
 }
