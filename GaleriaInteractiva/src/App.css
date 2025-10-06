@@ -77,10 +77,6 @@ ul {
     width: 800px;
 }
 
-.play {
-    margin: 30px;
-}
-
 li {
     position: relative;
     margin-bottom: 20px;
@@ -100,4 +96,8 @@ li {
 
 .active {
     border: 4px solid white;
+}
+
+button {
+    margin: 0;
 }
